@@ -9,7 +9,10 @@
 public class SmurfsRunner {
 public static void main (String[] args) {
 	Smurf Handy=new Smurf("Handy");
-	
-	Handy.eat();
+	Smurf Smurfette=new Smurf("Smurfette");
+	Smurf papa=new Smurf("papa");
+
+System.out.println(Handy.getName()+"I am a "+ Handy.isGirlOrBoy()+ ","+ " and I have a "+ Handy.getHatColor()+" hat. " + "I have a friend named Smurfette, and she is a " + Smurfette.isGirlOrBoy()+"."); 
+System.out.println("Papa is wearing a "+papa.getHatColor()+" hat.");
 }
 }
