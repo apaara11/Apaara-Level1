@@ -14,41 +14,52 @@ import javax.swing.JOptionPane;
 public class PhotoQuiz {
 
 	public static void main(String[] args) throws Exception {
-		Frame quizWindow = new Frame();
+		JFrame quizWindow = new JFrame();
 		quizWindow.setVisible(true);
 
-		// 1. find an image on the internet, and put its URL in a String variable (from your browser, right click on the image, and select “Copy Image URL”)
-		String URL= "http://i.huffpost.com/gen/1147664/images/o-OPTICAL-ILLUSIONS-facebook.jpg";
+		// 1. find an image on the internet, and put its URL in a String
+		// variable (from your browser, right click on the image, and select
+		// “Copy Image URL”)
+		String URL = "http://i.huffpost.com/gen/1147664/images/o-OPTICAL-ILLUSIONS-facebook.jpg";
 		// 2. create a variable of type "Component" that will hold your image
-Component image;
+		Component image;
 		// 3. use the "createImage()" method below to initialize your Component
-image=createImage(URL);
+		image = createImage(URL);
 		// 4. add the image to the quiz window
-quizWindow.add(image);
+		quizWindow.add(image);
 		// 5. call the pack() method on the quiz window
-quizWindow.pack();
+		quizWindow.pack();
+		quizWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 6. ask a question that relates to the image
-String chawla=JOptionPane.showInputDialog("Do you see movement?");
+		String chawla = JOptionPane.showInputDialog("Do you see movement?");
 		// 7. print "CORRECT" if the user gave the right answer
-if(chawla.equals("yes")){
+		if (chawla.equals("yes")) {
+			JOptionPane.showMessageDialog(null, "CORRECT!");
+		}
+		// 8. print "INCORRECT" if the answer is wrong
+		else {
+			JOptionPane.showMessageDialog(null, "INCORRECT");
+		}
+		// 9. remove the component from the quiz window (you may not see the
+		// effect of this until step 12)
+		quizWindow.remove(image);
+		// 10. find another image and create it (might take more than one line
+		// of code)
+		URL="http://images.fineartamerica.com/images-medium-large/optical-illusion-pods-michael-tompsett.jpg";
+		// 11. add the second image to the quiz window
+		image = createImage(URL);
+		quizWindow.add(image);
+		// 12. pack the quiz window
+quizWindow.pack();
+		// 13. ask another question
+String question = JOptionPane.showInputDialog("Do you see movement here?");
+		// 14+ check answer, say if correct or incorrect, etc.
+if(question.equals("yes")){
 	JOptionPane.showMessageDialog(null, "CORRECT!");
 }
-		// 8. print "INCORRECT" if the answer is wrong
 else{
 	JOptionPane.showMessageDialog(null, "INCORRECT");
 }
-		// 9. remove the component from the quiz window (you may not see the effect of this until step 12)
-quizWindow.remove(image);
-		// 10. find another image and create it (might take more than one line of code)
-
-		// 11. add the second image to the quiz window
-
-		// 12. pack the quiz window
-
-		// 13. ask another question
-
-		// 14+ check answer, say if correct or incorrect, etc.
-
 	}
 
 	private static Component createImage(String imageUrl) throws MalformedURLException {
@@ -60,9 +71,6 @@ quizWindow.remove(image);
 
 	/* OPTIONAL */
 	// *14. add scoring to your quiz
-	// *15. make something happen when mouse enters image (imageComponent.addMouseMotionListener()) 
+	// *15. make something happen when mouse enters image
+	// (imageComponent.addMouseMotionListener())
 }
-
-
-
-
