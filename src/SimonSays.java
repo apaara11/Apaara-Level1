@@ -25,8 +25,12 @@ public class SimonSays extends KeyAdapter {
 	private int simonSays = 0;
 	Date timeAtStart;
 
+	int random;
+
+	int score = 0;
+
 	private void makeAlbum() {
-		// 2. add 4 images which match keyboard keys like this: 
+		// 2. add 4 images which match keyboard keys like this:
 		images.put(new Integer(KeyEvent.VK_UP), "up.png");
 		images.put(new Integer(KeyEvent.VK_DOWN), "down.jpg");
 		images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
@@ -40,30 +44,45 @@ public class SimonSays extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		
-		// 16. make a points variable to track the score. tell the user their
-		// score at the end.
-		
+
 		// 17. if the keyCode matches the imageIndex and "Simon says..."
 		// increase their score
-
+		score(keyCode);
 		// 18. if the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..." increase their score
 
 		// 19. Use the speak method to tell the user if they were correct or not
 
 		// 13. increment tries by 1
-tries+=1;
+		tries += 1;
 		// 14. if tries is greater than 9 (or however many you want)
-if(tries>=9){
-	System.exit(0);
-}
-		// 15. exit the program
-
+		if (tries >= 10) {
+			JOptionPane.showMessageDialog(null, " Your score is..... " + score + " out of " + tries + " ; " + ((score * 100)/tries) + " % ");
+			System.exit(0);
+		}
 		// 11. dispose of the frame
-frame.dispose();
+		frame.dispose();
 		// 12. call the method to show an image
-showImage();
+		showImage();
+	}
+
+	private void score(int keyCode) {
+		if (keyCode == imageIndex && random == 0) {
+			score = score + 1;
+
+			speak("Correct");
+		}
+
+		else if (keyCode != imageIndex && random == 1) {
+			score = score + 1;
+
+			speak("Correct");
+		}
+
+		else {
+			speak("incorrect");
+		}
+
 	}
 
 	private void showImage() {
@@ -82,7 +101,7 @@ showImage();
 		// "Press this key"
 		// Hint: use the simonSays int and a random number
 		Random r = new Random();
-		int random = r.nextInt(2);
+		random = r.nextInt(2);
 
 		if (random == 0) {
 			speak("Simon says press this key");
@@ -115,11 +134,3 @@ showImage();
 	}
 }
 
-/*
- * 20. add a timer ~~~ where the code starts running ~~~ timeAtStart = new
- * Date();
- *
- * ~~~ where the code ends ~~~ Date timeAtEnd = new Date();
- * System.out.println((timeAtEnd.getTime()-timeAtStart.getTime())/1000);
- * System.exit(0);
- */
