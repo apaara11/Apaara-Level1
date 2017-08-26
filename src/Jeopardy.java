@@ -60,36 +60,50 @@ public class Jeopardy implements ActionListener {
 		// 6. Use the createButton method to set the value of firstButton
 		theLeagueButtons();
 		// 10. Add the secondButton to the quizPanel
-
+		
 		// 11. Add action listeners to the buttons (2 lines of code)
 
 		// 12. Fill in the actionPerformed() method below
 
 		frame.pack();
+		
 		quizPanel.setLayout(new GridLayout(buttonCount + 1, 3));
+		
 		frame.add(makeScorePanel(), BorderLayout.NORTH);
+		
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().height,
-				Toolkit.getDefaultToolkit().getScreenSize().width);
+				
+		Toolkit.getDefaultToolkit().getScreenSize().width);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 	}
 
 	public void theLeagueButtons() {
 		firstButton = createButton("$100");
-		
+
 		quizPanel.add(firstButton);
-		
+
 		secondButton = createButton("$200");
-		
+
 		quizPanel.add(secondButton);
-		
+
 		thirdButton = createButton("$300");
-		
+
 		quizPanel.add(thirdButton);
-		
+
 		fourthButton = createButton("$400");
-		
+
 		quizPanel.add(fourthButton);
+		
+		
+		firstButton.addActionListener(this);
+		secondButton.addActionListener(this);
+		thirdButton.addActionListener(this);
+		fourthButton.addActionListener(this);
 	}
+	
+	
 	/*
 	 * 13. Use the method provided to play the Jeopardy theme music
 	 * 
@@ -119,28 +133,48 @@ public class Jeopardy implements ActionListener {
 		// Use the method that plays the jeopardy theme music.
 
 		JButton buttonPressed = (JButton) arg0.getSource();
+		
+		playJeopardyTheme();
 		// If the buttonPressed was the firstButton
+if(buttonPressed.equals(firstButton)){
+	
+	askQuestion("How old is Mr. Vic ?", "83", 100);
+	firstButton.setText("");
+}
 
-		// Call the askQuestion() method
+else if(buttonPressed.equals(secondButton)){
+	
+	askQuestion("How old is the League ?" , "10 years", 200);
+	secondButton.setText("");
+}
 
-		// Fill in the askQuestion() method. When you play the game, the score
-		// should change.
+else if(buttonPressed.equals(thirdButton)){
+	
+	askQuestion("What is the name of Vic's wife?", "Diane", 300);
+	thirdButton.setText("");
+}
 
-		// Or if the buttonPressed was the secondButton
+else if(buttonPressed.equals(fourthButton)){
+	
+	askQuestion("What is the last level?", "Level 9", 400);
+	fourthButton.setText("");
+	
+}
 
-		// Call the askQuestion() method with a harder question
-
-		// Clear the button text (set the button text to nothing)
 
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		// Remove this temporary message
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		String answer = JOptionPane.showInputDialog(question);
 		// Use a pop up to ask the user the question
 
 		// If the answer is correct
-
+		if(answer.equals(correctAnswer)){
+			score+=prizeMoney;
+			updateScore();
+		JOptionPane.showMessageDialog(null, "You Are Correct");
+}
 		// Increase the score by the prizeMoney
 
 		// Call the updateScore() method
@@ -148,7 +182,12 @@ public class Jeopardy implements ActionListener {
 		// Pop up a message to tell the user they were correct
 
 		// Otherwise
-
+		else{
+			score-=prizeMoney;
+			updateScore();
+		JOptionPane.showMessageDialog(null, correctAnswer);
+			
+		}
 		// Decrement the score by the prizeMoney
 
 		// Pop up a message to tell the user the correct answer
@@ -156,12 +195,15 @@ public class Jeopardy implements ActionListener {
 		// Call the updateScore() method
 
 	}
-
+Clip clip;
 	public void playJeopardyTheme() {
 		try {
+			if(clip!=null){
+				clip.stop();
+			}
 			AudioInputStream audioInputStream = AudioSystem
 					.getAudioInputStream(new File("/Users/League/Google Drive/league-sounds/jeopardy.wav"));
-			Clip clip = AudioSystem.getClip();
+		    clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();
 		} catch (Exception ex) {
