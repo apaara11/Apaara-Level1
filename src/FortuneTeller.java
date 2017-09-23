@@ -61,6 +61,7 @@ JOptionPane.showMessageDialog(null, "The secret location is something that you c
    		  sound.play();
 
    		 // 11. Use the pause() method below to wait until your music has finished
+   		pause(14);
 
    		 // 12. Insert your completed Magic 8 ball recipe (http://bit.ly/Zdrf6d) here
 
