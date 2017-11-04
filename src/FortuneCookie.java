@@ -19,6 +19,8 @@ public class FortuneCookie implements ActionListener {
 		
 		JFrame frame = new JFrame(); 
 		
+		frame.setSize(1111,1111);
+		
 			frame.setVisible(true);
 			frame.add(button);
 			
@@ -45,7 +47,16 @@ Random random = new Random();
 					JOptionPane.showMessageDialog(null, "I do not know");
 				}
 				else if (r1==2) {
-					JOptionPane.showMessageDialog(null, "You woill be successful!!");
+					JOptionPane.showMessageDialog(null, "You will be successful!!");
+				}
+				else if (r1==3) {
+					JOptionPane.showMessageDialog(null, "You won't be successful!!");
+				}
+				else if (r1==4) {
+					JOptionPane.showMessageDialog(null, "I don't know");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "HOW'M MY SUPPOSED TO KNOW?!");
 				}
 		}
 		
