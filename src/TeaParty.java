@@ -23,16 +23,26 @@
  **/
 public class TeaParty {
 
-	private String lastname;
-	private boolean isWoman;
-	private boolean isKnighted;
-
-	public TeaParty(String lastName, boolean isWoman, boolean isKnighted) {
-
-		this.lastname = lastname;
-		this.isWoman = isWoman;
-		this.isKnighted = isKnighted;
-
+	public static String welcome(String lastName, boolean isWoman, boolean isKnighted) {
+		
+		if(isWoman==true) {
+			if(isKnighted==true) {
+				return "Hello Dame"+ lastName;
+				}
+			else {
+				return "Hello Ms."+ lastName;
+			}
+		}
+		else {
+			if(isKnighted==true) {
+				return "Hello Sir"+ lastName;
+			}
+			else {
+				return "Hello Mr."+ lastName;
+			}
+		}
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
