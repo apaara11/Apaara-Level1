@@ -27,7 +27,7 @@ public class TeaParty {
 		
 		if(isWoman==true) {
 			if(isKnighted==true) {
-				return "Hello Dame"+ lastName;
+				return "Hello Lady"+ lastName;
 				}
 			else {
 				return "Hello Ms."+ lastName;
@@ -41,8 +41,6 @@ public class TeaParty {
 				return "Hello Mr."+ lastName;
 			}
 		}
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
